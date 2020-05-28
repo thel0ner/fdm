@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Free Download Manager
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="modal" tabindex="-1" role="dialog" id="settings">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">FDM settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body px-3">
+                    <p>
+                        Here you can speicify how <strong>FDM</strong> is supposed to work :
+                    </p>
+                    <form>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="useAxel">
+                            <label class="custom-control-label" for="useAxel">
+                                Use Multi Connection download engine
+                            </label>
+                            <!-- <div class="w-100"></div> -->
+                            <small class="form-text text-warning">
+                                <strong>Warning! </strong>
+                                without Multi Connection being activated, FDM will be nothing more than a simple file
+                                downloader and
+                                all features like multi connection downloads and speed control will turn off.
+                                You may want to turn it off only if you're using a network which such downloads are
+                                prohibited in.
+                            </small>
+                        </div>
+                        <div class="form-row d-flex flex-row align-items-center mt-2">
+                            <div class="col-md-6">
+                                <label for="maxSpeed">Maximum speed (KB/s)</label>
+                            </div>
+                            <div class="col pr-3 col-md-6">
+                                <input type="number" id="maxSpeed" class="form-control mx-sm-3">
+                            </div>
+                            <div class="col-md-12">
+                                <small class="text-primary">
+                                    Default is 6000 kb/s. set it based on your network capability.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-row d-flex flex-row align-items-center mt-2">
+                            <div class="col-md-6">
+                                <label for="maxConnection">Maximum connections</label>
+                            </div>
+                            <div class="col pr-3 col-md-6">
+                                <input type="number" id="maxConnection" class="form-control mx-sm-3">
+                            </div>
+                            <div class="col-md-12">
+                                <small class="text-primary">
+                                    What is the maximum number of connections allowed per download? also you have the
+                                    option to set number of connections in every download, here you can set the maximum
+                                    of connections that is allowed in every download too.
+                                    Again, please consider your network capabilities when setting this.
+                                </small>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                    <button type="button" class="btn btn-primary" id="saveSettings">Apply settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="updateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">FDM is updated.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="message">FDM is updated and ready re-start</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Later</button>
+                    <button id="restart_btn" type="button" class="d-none btn btn-primary"
+                        onClick="restartApp()">re-start FDM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="new_download">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Start a new download</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert" id="download_panel_message"></div>
+                    <form>
+                        <div class="form-row d-flex align-items-center mb-4">
+                            <div class="col-md-3">
+                                <label for="url">
+                                    The URL of file
+                                </label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="url" id="url" class="form-control" required>
+                            </div>
+                            <div class="col-md-12">
+                                <small class="text-primary">
+                                    The direct link of the file
+                                </small>
+                            </div>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" id="customFileLabel" for="customFile" webkitdirectory
+                                directory multiple>
+                                Directory to save the downloaded file in
+                            </label>
+                        </div>
+                        <div class="form-group row my-3">
+                            <label for="connection" class="col-sm-3 col-form-label">
+                                connections
+                            </label>
+                            <div class="col-sm-3">
+
+                                <input type="number" class="form-control" id="connection">
+                            </div>
+                            <div class="col-sm-6">
+
+                            </div>
+                            <div class="col-sm-12">
+                                <small class="form-text text-info">
+                                    Should not exceed the <strong>Maximum Connections</strong> which is set in
+                                    <strong>Settings</strong> section.
+                                    <br />
+                                    If left blank, the <strong>Maximum Connections</strong> from settings section will
+                                    be set as default.
+                                </small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                    <button id="download_btn" type="button" class="btn btn-primary">Start
+                        download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="archives">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Archive</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="archive_content"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-2 px-2 py-2 mt-1 mb-2 pl-2 shadow-sm d-flex justify-content-center">
+        <div class="small_image">
+            <img id="start_download" src="./start.png" alt="start" class="btn" data-toggle="popover"
+                title="Start  a download here"
+                data-content="To start a new download, click here and set download link, destination directory and number of connections."
+                data-trigger="hover">
+        </div>
+        <div class="small_image">
+            <img id="open_archive" src="./archives.png" alt="start" class="btn" data-toggle="popover" title="Downloads Archive"
+                data-content="Download archives. software will keep track of both failed and successful downloads which can be found here."
+                data-trigger="hover">
+        </div>
+        <div class="small_image">
+            <img id="open_settings" src="./settings.png" alt="start" class="btn" data-toggle="popover"
+                title="FDM settings"
+                data-content="Change settings of FDM. settings like maximum speed and connection can be found here."
+                data-trigger="hover">
+        </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert" id="offline">
+        <strong>
+            You're offline ?!
+        </strong>
+        <br />
+        Operation can't be done while you're offline unless you download from a local network.
+    </div>
+
+    <div class="container">
+        Welcome to Free Download Manager.<br />
+        This application helps you download your desired files faster and easier.<br />
+        To begin, please start with top menu.
+        <div class="card mt-2" id="download_report">
+            <div class="card-header" id="filename">
+                File name here
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Download in progress ....
+                </h5>
+                <p class="card-text">
+                <div class="progress">
+                    <div id="download_progress" class="progress-bar progress-bar-striped progress-bar-animated"
+                        role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    </div>
+                </div>
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-danger" role="alert" id="serverError">
+        </div>
+        <div class="card mt-2" id="download_completed">
+            <div class="card-header" id="download_report_title">
+
+            </div>
+            <div class="card-body" id="download_success_report">
+
+            </div>
+        </div>
+    </div>
+
+    <div class=" text-center d-block border shadow-sm py-2 my-2 text-info font-weight-bold" id="version">
+        test
+    </div>
+
+    <script src="render.js"></script>
+</body>
+
+</html>

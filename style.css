@@ -1,0 +1,18 @@
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+#version {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.small_image img {
+  width: 22%;
+  height: auto;
+}
+#offline,
+#download_panel_message,
+#download_report,
+#serverError,
+#download_completed,
+#archives {
+  display: none;
+}

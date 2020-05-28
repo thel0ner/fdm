@@ -1,0 +1,27 @@
+{
+  "name": "download-manager",
+  "version": "1.0.0",
+  "description": "free,fast download manager powered by axel",
+  "main": "index.js",
+  "author": "thel0ner",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^9.0.0",
+    "electron-builder": "^22.6.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "electron-updater": "^4.3.1",
+    "jquery": "^3.5.1",
+    "multipart-download": "^1.2.3",
+    "popper.js": "^1.16.1",
+    "request": "^2.88.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thel0ner/fdm.git"
+  }
+}
