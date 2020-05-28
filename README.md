@@ -30,13 +30,13 @@ Upcomming features :
  
  Build : 
  
- `git clone https://github.com/thel0ner/fdm.git
+ `git clone https://github.com/thel0ner/fdm.git`
  
- cd fdm 
+ `cd fdm` 
  
- yarn add 
+ `yarn add` 
  
- yarn dist` 
+ `yarn dist` 
  
  The above command will build a ninary based on your OS. 
  
