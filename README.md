@@ -38,7 +38,7 @@ Upcomming features :
  
  `yarn dist` 
  
- The above command will build a ninary based on your OS. 
+ The above command will build a binary based on your OS. 
  
  Icons copyright : 
  
