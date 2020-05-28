@@ -28,3 +28,23 @@ Upcomming features :
  
  ![alt fdm](https://raw.githubusercontent.com/thel0ner/fdm/master/screenshots/screen2.png)
  
+ Build : 
+ 
+ `git clone https://github.com/thel0ner/fdm.git
+ 
+ cd fdm 
+ 
+ yarn add 
+ 
+ yarn dist` 
+ 
+ The above command will build a ninary based on your OS. 
+ 
+ Icons copyright : 
+ 
+ main and setings icons : https://www.flaticon.com/authors/freepik
+ 
+start button : https://www.flaticon.com/authors/smalllikeart
+
+archive button : https://www.flaticon.com/authors/dinosoftlabs
+ 
