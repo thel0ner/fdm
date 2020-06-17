@@ -2,7 +2,7 @@
 
 Easily manage and download your desired files from websites and servers with multi connection and max speed control.
 
-#New Feature : Download videos from YouTube
+# New Feature : Download videos from YouTube
 
 Upcomming features :
 
