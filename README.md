@@ -10,15 +10,7 @@ Upcomming features :
 
  2) Connect to TOR (The Onion Relay Network)
 
- Downloads : 
- 
-  Windows 64 bit : [Download](https://github.com/thel0ner/fdm/releases/download/1.0.0/windows-x64download-manager.Setup.1.0.0.exe)
-  
-  Windows 32 bit : [Download](https://github.com/thel0ner/fdm/releases/download/1.0.0/windows-ia32-download-manager.Setup.1.0.0.exe)
-
- Linux 64 bit : [Download](https://github.com/thel0ner/fdm/releases/download/1.0.0/linux-x64-download-manager-1.0.0.AppImage)
-
- Linux 32 bit : [Download](https://github.com/thel0ner/fdm/releases/download/1.0.0/linux-ia32-download-manager-1.0.0-i386.AppImage)
+ [Download now!](https://github.com/thel0ner/fdm/releases)
  
 
  
