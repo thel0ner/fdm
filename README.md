@@ -2,9 +2,11 @@
 
 Easily manage and download your desired files from websites and servers with multi connection and max speed control.
 
+#New Feature : Download videos from YouTube
+
 Upcomming features :
 
- 1) Download from YouTube
+ 1) Convert videos to mp3
 
  2) Connect to TOR (The Onion Relay Network)
 
@@ -48,3 +50,4 @@ start button : https://www.flaticon.com/authors/smalllikeart
 
 archive button : https://www.flaticon.com/authors/dinosoftlabs
  
+youtube icon : https://www.flaticon.com/authors/freepik
