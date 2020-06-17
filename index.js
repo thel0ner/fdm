@@ -18,7 +18,7 @@ app.on(
         win.loadFile("./index.html");
         win.setResizable(false);
         Menu.setApplicationMenu(null);
-        win.webContents.openDevTools();
+        // win.webContents.openDevTools();
         win.on('new-window', function (event, url) {
             event.preventDefault();
             open(url);

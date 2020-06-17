@@ -1,12 +1,15 @@
 {
   "name": "download-manager",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "free,fast download manager powered by axel",
   "main": "index.js",
-  "author": "thel0ner",
+  "author": "thel0ner <kavehtahernam@gmail.com>",
+  "email" : "kavehtahernam@gmail.com",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "devDependencies": {
     "electron": "^9.0.0",
@@ -15,10 +18,12 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "electron-updater": "^4.3.1",
+    "fluent-ffmpeg": "^2.1.2",
     "jquery": "^3.5.1",
     "multipart-download": "^1.2.3",
     "popper.js": "^1.16.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "ytdl-core": "^2.1.7"
   },
   "repository": {
     "type": "git",

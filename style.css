@@ -13,6 +13,8 @@
 #download_report,
 #serverError,
 #download_completed,
-#archives {
+#archives,
+#youtubepanel,
+#youtube_warning {
   display: none;
 }

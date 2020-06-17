@@ -7,6 +7,7 @@ window.Bootstrap = require("bootstrap");
 const connectionWatch = require("./connection");
 const database = require("./database");
 const downloader = require('./downloader');
+const youtube_downloader = require('./youtube');
 const url_regex = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/, "gi");
 const date_options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 var directory = "";
@@ -160,7 +161,7 @@ $(document).ready(
                         $("#archive_content").append(`Date : <strong>${x.time}</strong><br />`);
                         $("#archive_content").append(`URL : <strong>${x.url.substr(0, 15)} ...</strong>
                             <button class="btn btn-info btn-sm" onclick="navigator.clipboard.writeText('${x.url}')">Copy</button><br /> `);
-                        $("#archive_content").append(`Downloaded in : <strong>${x.dest.substr(0,13)}...</strong> 
+                        $("#archive_content").append(`Downloaded in : <strong>${x.dest.substr(0, 13)}...</strong> 
                         <button class="btn btn-info btn-sm" onclick="open_directory('${x.dest}')">Open directory</button>`);
                         $("#archive_content").append("</div>");
                         c++;
@@ -168,6 +169,86 @@ $(document).ready(
                 );
             }
             $("#archives").modal("show");
+        });
+
+        $("#youtube").on("click", () => {
+            let dir;
+            $("#youtubepanel").modal("show");
+            $("#customFile4Youtube").on("click", (event) => {
+                event.preventDefault();
+                const path = dialog.showOpenDialogSync({
+                    properties: ['openDirectory']
+                });
+                dir = typeof path !== "undefined" && path[0].length > 1 ? path[0] : ""
+                $("#customFile4YoutubeLabel").text(dir.length < 15 ? dir : dir.substr(0, 15) + "...");
+            });
+            $("#youtubedownloader").on(
+                "click",
+                () => {
+                    is_there_any_active_download = true;
+                    let format = $("#format").val();
+                    var url = $("#youtube_url").val();
+                    let quality = $("#quality").val();
+                    if (dir && format && url && quality) {
+                        $("#filename").html(`video.${format}`);
+                        $("#youtubepanel").modal("hide");
+                        $("#download_report").show();
+                        const start_time = new Date();
+                        youtube_downloader(
+                            url,
+                            $("#download_progress"),
+                            dir,
+                            $("#format").val() === "mp3" ? true : false
+                        ).then(
+                            _ => {
+                                const end_time = new Date();
+                                const total_time = end_time - start_time;
+                                is_there_any_active_download = false;
+                                $("#download_report").hide();
+                                let downloads = database.getItem(1);
+                                downloads = downloads === null ? [] : downloads;
+                                const event = new Date();
+                                downloads.push(
+                                    {
+                                        time: event.toLocaleDateString(undefined, date_options),
+                                        url: url,
+                                        dest: dir,
+                                        file_name: `video.${format}`
+                                    }
+                                );
+                                database.setItem(1, downloads);
+                                $("#download_report_title").html("Download completed");
+                                let temp = `
+                                    File name : <strong>video.${format}</strong><br />
+                                    Duration : <strong>${total_time / 1000} seconds</strong> <br />
+                                    Directory : <strong>${dir}</strong> <span class="btn btn-success btn-sm" id="ytb_open_directory">Open</span>
+                                `;
+                                $("#download_success_report").html(temp);
+                                $("#download_completed").show();
+                                $("#ytb_open_directory").on(
+                                    "click",
+                                    () => {
+                                        shell.openPath(dir);
+                                    }
+                                )
+
+                            }
+                        ).catch(
+                            error => {
+                                const html = "<strong>Error!</strong><br />We couldn't download the file, server returned status " + error;
+                                $("#serverError").html(html);
+                                $("#download_report").hide();
+                                $("#serverError").show();
+                                is_there_any_active_download = false;
+                            }
+                        )
+                    } else {
+                        console.log(`dir : ${dir} - format : ${format} - url : ${url}`);
+
+                        $("#youtube_warning").show();
+                    }
+                }
+            );
         });
     }
 );

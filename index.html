@@ -187,6 +187,70 @@
         </div>
     </div>
 
+    <div class="modal" tabindex="-1" role="dialog" id="youtubepanel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">YouTube downloader</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="youtube_warning">
+                        <strong>Error!</strong><br>
+                        All fields are required.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="youtube_url">
+                                Please enter the YouTube's video URL:
+                            </label>
+                            <input type="text" id="youtube_url" class="form-control w-100"
+                                placeholder="example : https://www.youtube.com/watch?v=xcpS3i6Dutc">
+                        </div>
+                        <div class="form-group">
+                            <label for="format">
+                                Please select a format:
+                            </label>
+                            <select id="format" class="form-control">
+                                <option value="mp3" disabled>MP3</option>
+                                <option value="mp4">MPEG-4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quality">Please set your desired quality:</label>
+                            <select id="quality" class="form-control">
+                                <option value="highest">Highest possible quality</option>
+                                <option value="highestvideo">Highest possible video quality</option>
+                                <option value="highestaudio">Highest possible audio quality</option>
+                                <option value="lowestvideo">lowest video quality</option>
+                                <option value="lowestaudio">lowest audio quality</option>
+                                <option value="lowest">lowest quality</option>
+                            </select>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile4Youtube">
+                            <label class="custom-file-label" id="customFile4YoutubeLabel" for="customFile4Youtube"
+                                webkitdirectory directory multiple>
+                                Directory to save the downloaded file in
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                    <button type="button" class="btn btn-primary" id="youtubedownloader">
+                        Start download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="mb-2 px-2 py-2 mt-1 mb-2 pl-2 shadow-sm d-flex justify-content-center">
         <div class="small_image">
             <img id="start_download" src="./start.png" alt="start" class="btn" data-toggle="popover"
@@ -195,7 +259,12 @@
                 data-trigger="hover">
         </div>
         <div class="small_image">
-            <img id="open_archive" src="./archives.png" alt="start" class="btn" data-toggle="popover" title="Downloads Archive"
+            <img id="youtube" src="./youtube.png" class="btn" data-toggle="popover" title="download videos from youtube"
+                data-content="Download videos from YouTube" data-trigger="hover">
+        </div>
+        <div class="small_image">
+            <img id="open_archive" src="./archives.png" alt="start" class="btn" data-toggle="popover"
+                title="Downloads Archive"
                 data-content="Download archives. software will keep track of both failed and successful downloads which can be found here."
                 data-trigger="hover">
         </div>
